@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript LBS</title>
+
+        <script type="text/javascript">
+            function showPosition(position) {
+                console.log('showPosition');
+                alert("Lat: " + position.coords.latitude + "Lng: " + position.coords.longitude);
+            }
+
+            function showError(error) {
+                console.log('showError');
+                alert("Error: " + error.message);
+            }
+
+            function getLocation() {
+                console.log('getLocation');
+
+                var config = {
+                    maximumAge: 100,
+                    timeout: 6 * 1000,
+                    enableHighAccuracy: false
+                };
+
+                if (navigator.geolocation) {
+                    console.log("request lbs...");
+
+                    navigator.geolocation.getCurrentPosition(showPosition, showError, config);
+                } else {
+                    alert("Geolocation is not supported by this browser.")
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>JavaScript - Lbs Demo</h1>
+
+        <button type="button" onclick="getLocation()"
+                style="width: 200px; height: 60px; font-size: 20px; margin-top: 20px;">Click to LBS</button>
+    </body>
+</html>
